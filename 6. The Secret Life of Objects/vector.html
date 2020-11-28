@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Write a constructor vector that represents a vector in two-dimensional space. It takes x and y parameters (numbers), which it should save to properties of the same name.
+
+Give the vector prototype two methods, plus and minus, that take another vector as a parameter and return a new vector that has the sum or difference of the two vectors’ (the one in this and the parameter) x and y values.
+
+Add a getter property length to the prototype that computes the length of the vector—that is, the distance of the point (x, y) from the origin (0, 0).
+
+// Your code here.
+
+console.log(new vector(1, 2).plus(new vector(2, 3)));
+// → Vector{x: 3, y: 5}
+console.log(new vector(1, 2).minus(new vector(2, 3)));
+// → Vector{x: -1, y: -1}
+console.log(new vector(3, 4).length);
+// → 5 -->
+
+    <script>
+
+        // constructor vector
+        function vector(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        // creation prototype plus for vector
+        vector.prototype.plus = function (value) {
+            return new vector(this.x + value.x, this.y + value.y);
+        };
+
+        // creation prototype minus for vector
+        vector.prototype.minus = function (value) {
+            return new vector(this.x - value.x, this.y - value.y);
+        };
+
+        // change the properties length of the object
+        Object.defineProperty(vector.prototype, 'length', {
+            get: function () {
+                return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+            }
+        });
+
+    </script>
+</body>
+
+</html>

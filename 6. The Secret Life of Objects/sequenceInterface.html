@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- Design an interface that abstracts iteration over a collection of values. An object that provides this interface represents a sequence, and the interface must somehow make it possible for code that uses such an object to iterate over the sequence, looking at the element values it is made up of and having some way to find out when the end of the sequence is reached.
+
+When you have specified your interface, try to write a function logFive that takes a sequence object and returns a string with its first five elements—or fewer, if the sequence has fewer than five elements.
+
+Then implement an object type ArraySeq that wraps an array and allows iteration over the array using the interface you designed. Implement another object type RangeSeq that iterates over a range of integers (taking from and to arguments to its constructor) instead.
+
+// Your code here.
+
+logFive(new ArraySeq([1, 2]));
+// → 1
+// → 2
+logFive(new RangeSeq(100, 1000));
+// → 100
+// → 101
+// → 102
+// → 103
+// → 104 -->
+
+  <script>
+    function logFive(value) {
+      var resultArr = [];
+      for (var i = 0; i < 5; i++) {
+        if (!value.next()) {
+          break;
+        }
+        resultArr.push(value.current());
+      }
+      // array to string
+      return resultArr.join('\n') + '\n';
+    }
+    // takes in two parameters and has
+    // properties of the same name
+    // index property that we use to iterate
+    // upwards in rangeSeq.prototype.next
+    function rangeSeq(from, to) {
+      this.from = from;
+      this.to = to;
+      this.index = -1;
+    }
+    // checking if the min range value when added
+    rangeSeq.prototype.next = function () {
+      if (this.from + this.index > this.to) {
+        return false;
+      }
+      this.index++;
+      return true;
+    };
+    // return the min range value and adds the index to it
+    rangeSeq.prototype.current = function () {
+      return this.from + this.index;
+    };
+    // same as in the previous example
+    function arraySeq(array) {
+      this.index = -1;
+      this.array = array;
+    }
+    arraySeq.prototype.next = function () {
+      if (this.index >= this.array.length - 1) {
+        return false;
+      }
+      this.index++;
+      return true;
+    };
+    arraySeq.prototype.current = function () {
+      return this.array[this.index];
+    };
+
+    console.log(logFive(new arraySeq([1, 2])));
+
+    console.log(logFive(new rangeSeq(100, 1000)));
+
+  </script>
+</body>
+
+</html>
