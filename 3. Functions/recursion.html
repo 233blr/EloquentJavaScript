@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+We’ve seen that % (the remainder operator) can be used to test whether a number is even or odd by using % 2 to check whether it’s divisible by two. Here’s another way to define whether a positive whole number is even or odd:
+
+ Zero is even.
+
+ One is odd.
+
+ For any other number N, its evenness is the same as N - 2.
+
+Define a recursive function isEven corresponding to this description. The function should accept a number parameter and return a Boolean.
+
+You have to deliver the solution files to Git repository. You can use pre-defined unit tests located in test folder in your repository (you will need to change extension to.js in order to enable them)
+
+Ask your tutor if you have any questions.
+     -->
+    <script>
+        function isEven(val) {
+            // Returns the absolute value of a number
+            val = Math.abs(val);
+            // Checking the number
+            if (val == 0) {
+                return true;
+            } else if (val == 1) {
+                return false;
+            } else {
+                return isEven(val - 2);
+            }
+        }
+    </script>
+</body>
+
+</html>

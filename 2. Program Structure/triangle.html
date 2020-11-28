@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+Write a function forLoop() that does loop that returns a string with the following triangle:
+
+#
+##
+###
+####
+#####
+######
+#######
+Separate new lines with '\n' symbol, so the output string looks like this:
+
+"#\n##\n###\n####\n#####\n######\n#######\n"
+It may be useful to know that you can find the length of a string by writing .length after it.
+
+var abc = "abc";
+console.log(abc.length);
+// → 3
+
+You have to deliver the solution files to Git repository. You can use pre-defined unit tests located in test folder in your repository (you will need to change extension to.js in order to enable them)
+
+Ask your tutor if you have any questions.
+-->
+    <script>
+        function forLoop() {
+            var answer = '';
+            //cycle will return "#\n##\n###\n####\n#####\n######\n#######\n"string
+            for (var string = '#'; string.length < 8; string += '#') {
+                answer += (string + '\n');
+            }
+
+            return answer;
+        }
+    </script>
+</body>
+
+</html>
