@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- The getElementsByTagName method returns all child elements with a given tag name. Implement your own version of it as a regular nonmethod function that takes a node and a string (the tag name) as arguments and returns an array containing all descendant element nodes with the given tag name.
+
+To find the tag name of an element, use its tagName property. But note that this will return the tag name in all uppercase. Use the toLowerCase or toUpperCase string method to compensate for this.
+
+<h1>Heading with a <span>span</span> element.</h1>
+<p>A paragraph with <span>one</span>, <span>two</span>
+  spans.</p>
+
+<script>
+  function byTagName(node, tagName) {
+    // Your code here.
+  }
+
+  console.log(byTagName(document.body, "h1").length);
+  // → 1
+  console.log(byTagName(document.body, "span").length);
+  // → 3
+  var para = document.querySelector("p");
+  console.log(byTagName(para, "span").length);
+  // → 2
+</script> -->
+
+    <script>
+        function byTagName(node, tagName) {
+            var countArr = [];
+            var items = node.children;
+            for (var i = 0; i < items.length; i++) {
+                // if we find a match then add the item to the array
+                if (items[i].nodeName.toLowerCase() === tagName) {
+                    countArr.push(items[i].nodeName);
+                }
+                // if items have children, then run the function again
+                if (items[i].children.length > 0) {
+                    countArr = countArr.concat(byTagName(items[i], tagName));
+                }
+            }
+            return countArr;
+        }
+    </script>
+</body>
+
+</html>

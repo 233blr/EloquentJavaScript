@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- HTML makes laying out tables quite a bit easier. An HTML table is built with the following tag structure:
+
+<table>
+  <tr>
+    <th>name</th>
+    <th>height</th>
+    <th>country</th>
+  </tr>
+  <tr>
+    <td>Kilimanjaro</td>
+    <td>5895</td>
+    <td>Tanzania</td>
+  </tr>
+</table>
+For each row, the <table> tag contains a <tr> tag. Inside of these <tr> tags, we can put cell elements: either heading cells (<th>) or regular cells (<td>).
+
+As a source for table you can use MOUNTAINS variable located in ext folder.
+
+Write a function buildTable that, given an array of objects that all have the same set of properties, builds up a DOM structure representing a table. The table should have a header row with the property names wrapped in <th> elements and should have one subsequent row per object in the array, with its property values in <td> elements.
+
+The Object.keys function, which returns an array containing the property names that an object has, will probably be helpful here.
+
+Once you have the basics working, right-align cells containing numbers by setting their style.textAlign property to "right".
+
+<style>
+  /* Defines a cleaner look for tables */
+  table  { border-collapse: collapse; }
+  td, th { border: 1px solid black; padding: 3px 8px; }
+  th     { text-align: left; }
+</style>
+
+<script type="text/javascript" src="/src/TaskXX/taskXX.js"></script>
+document.body.appendChild(buildTable(MOUNTAINS));
+</script>
+where is script looks like this:
+
+  function buildTable(data) {
+    // Your code here.
+  } -->
+
+    <script>
+        function buildTable(data) {
+            var i;
+            // get the reference for the body
+            var body = document.getElementsByTagName('body')[0];
+            // creates a <table> element and a <tbody> element
+            var table = document.createElement('table');
+            var tblBody = document.createElement('tbody');
+            // creating all cells
+            for (i = 0; i < data.length; i++) {
+                if (i === 0) {
+                    // created <th> tag
+                    cellCreate('th');
+                }
+                // created <td> tag
+                cellCreate('td');
+            }
+            function cellCreate(tagName) {
+                // creates a table row
+                var row = document.createElement('tr');
+                Object.keys(data[i]).forEach(function (key) {
+                    // selection table filling
+                    var tblTagText = tagName === 'td' ? this[key] : [key];
+                    // create a <td> element and a text, make the text
+                    var cell = document.createElement(tagName);
+                    var cellText = document.createTextNode(tblTagText);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    // styles for cells
+                    cell.style.border = '1px solid black';
+                    cell.style.padding = '3px 8px';
+                    // cells containing numbers move to the right
+                    if (typeof tblTagText === 'number') {
+                        cell.style.textAlign = 'right';
+                    } else {
+                        cell.style.textAlign = 'left';
+                    }
+                }, data[i]);
+                // add the row to the end of the table body
+                tblBody.appendChild(row);
+            }
+            // put the <tbody> in the <table>
+            table.appendChild(tblBody);
+            // appends <table> into <body>
+            body.appendChild(table);
+            // style for table
+            table.style.borderCollapse = 'collapse';
+            return table;
+        }
+    </script>
+</body>
+
+</html>
