@@ -10,8 +10,8 @@ Examples from the book "Eloquent JavaScript"
 1. Values, Types, and Operators
 2. [Program Structure](https://github.com/233blr/EloquentJavaScript/tree/main/2.%20Program%20Structure)
 3. [Functions](https://github.com/233blr/EloquentJavaScript/tree/main/3.%20Functions)
-4. Data Structures: Objects and Arrays
-5. Higher-order Functions
+4. [Data Structures: Objects and Arrays](https://github.com/233blr/EloquentJavaScript/tree/main/4.%20Data%20Structures:%20Objects%20and%20Arrays)
+5. [Higher-order Functions](https://github.com/233blr/EloquentJavaScript/tree/main/5.%20Higher-order%20Functions)
 6. The Secret Life of Objects
 7. Project: A Robot
 8. Bugs and Errors
