@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Imagine you have written a story and used single quotation marks throughout to mark pieces of dialogue. Now you want to replace all the dialogue quotes with double quotes, while keeping the single quotes used in contractions like aren’t.
+
+Think of a pattern that distinguishes these two kinds of quote usage and craft a call to the replace method that does the proper replacement.
+
+function fixedText() {
+    var text = "'I'm the cook,' he said, 'it's my job.'";
+//change this call
+    return text.replace(/A/g, "B");
+} -->
+
+    <script>
+        function fixedText() {
+            var text = "'I'm the cook,' he said, 'it's my job.'";
+            //change this call
+            return text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2');
+            // return text.replace(/(^|\W)'/g, '$1"');
+            // "I'm the cook," he said, "it's my job."
+        }
+    </script>
+</body>
+
+</html>
