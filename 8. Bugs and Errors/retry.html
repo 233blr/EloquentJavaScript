@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Say you have a function primitiveMultiply that, in 50 percent of cases, multiplies two numbers, and in the other 50 percent, raises an exception of type MultiplicatorUnitFailure. Write a function that wraps this clunky function and just keeps trying until a call succeeds, after which it returns the result.
+
+Make sure you handle only the exceptions you are trying to handle.
+
+function MultiplicatorUnitFailure() {}
+
+function primitiveMultiply(a, b) {
+  if (Math.random() < 0.5)
+    return a * b;
+  else
+    throw new MultiplicatorUnitFailure();
+}
+
+function reliableMultiply(a, b) {
+  // Your code here.
+}
+
+console.log(reliableMultiply(8, 8));
+// → 64 -->
+
+    <script>
+        function multiplicatorUnitFailure() { }
+
+        function primitiveMultiply(a, b) {
+            if (Math.random() < 0.5) {
+                return a * b;
+            } else {
+                throw new multiplicatorUnitFailure();
+            }
+        }
+
+        function reliableMultiply(a, b) {
+            for (var i = 0; i < 100; i++) {
+                try {
+                    // if the primitiveMultiply() function succeeds then
+                    // we return the answer and the loop is brake
+                    return primitiveMultiply(a, b);
+                    // if not, throw the error
+                } catch (error) {
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
