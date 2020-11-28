@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- Arrays have a method reverse, which changes the array by inverting the order in which its elements appear. For this exercise, write two functions, reverseArray and reverseArrayInPlace. The first, reverseArray, takes an array as argument and produces a new array that has the same elements in the inverse order. The second, reverseArrayInPlace, does what the reverse method does: it modifies the array given as argument in order to reverse its elements. Neither may use the standard reverse method.
+
+Thinking back to the notes about side effects and pure functions in the previous chapter, which variant do you expect to be useful in more situations? Which one is more efficient?
+
+// Your code here.
+
+console.log(reverseArray(["A", "B", "C"]));
+// → ["C", "B", "A"];
+var arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+// → [5, 4, 3, 2, 1]
+You have to deliver the solution files to Git repository. You can use pre-defined unit tests located in test folder in your repository (you will need to change extension to.js in order to enable them)
+
+Ask your tutor if you have any questions. -->
+
+  <script>
+    function reverseArray(array) {
+      var reversedArr = [];
+      var counter = array.length;
+      // going over from the end
+      do {
+        counter--;
+        //and insert
+        reversedArr.push(array[counter]);
+      } while (counter);
+      return reversedArr;
+    }
+
+    function reverseArrayInPlace(array) {
+      for (var i = 0; i < array.length / 2; ++i) {
+        var temp = array[i];
+        array[i] = array[array.length - i - 1];
+        array[array.length - i - 1] = temp;
+      }
+      return array;
+    }
+  </script>
+</body>
+
+</html>

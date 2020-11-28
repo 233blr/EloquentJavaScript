@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- The == operator compares objects by identity. But sometimes, you would prefer to compare the values of their actual properties.
+
+Write a function, deepEqual, that takes two values and returns true only if they are the same value or are objects with the same properties whose values are also equal when compared with a recursive call to deepEqual.
+
+To find out whether to compare two things by identity (use the === operator for that) or by looking at their properties, you can use the typeof operator. If it produces "object" for both values, you should do a deep comparison. But you have to take one silly exception into account: by a historical accident, typeof null also produces "object".
+
+// Your code here.
+
+var obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// → true
+You have to deliver the solution files to Git repository. You can use pre-defined unit tests located in test folder in your repository (you will need to change extension to.js in order to enable them)
+
+Ask your tutor if you have any questions.-->
+
+  <script>
+    function deepEqual(obj1, obj2) {
+      // check by identity
+      if (obj1 === obj2) {
+        return true;
+      }
+      // check for object and null
+      if (obj1 === null || typeof (obj1) !== 'object' ||
+        obj2 === null || typeof (obj2) !== 'object') {
+        return false;
+      }
+      // number of properties
+      var properties1 = null;
+      var properties2 = null;
+      var property;
+      for (property in obj1) {
+        if (property) {
+          properties1 += 1;
+        }
+      }
+      // check by properties
+      for (property in obj2) {
+        if (property) {
+          properties2 += 1;
+          if (!(property in obj1) || !deepEqual(obj1[property], obj2[property])) {
+            return false;
+          }
+        }
+      }
+      return properties1 === properties2;
+    }
+
+  </script>
+</body>
+
+</html>
