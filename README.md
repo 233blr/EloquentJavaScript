@@ -12,18 +12,18 @@ Examples from the book "Eloquent JavaScript"
 3. [Functions](https://github.com/233blr/EloquentJavaScript/tree/main/3.%20Functions)
 4. [Data Structures: Objects and Arrays](https://github.com/233blr/EloquentJavaScript/tree/main/4.%20Data%20Structures:%20Objects%20and%20Arrays)
 5. [Higher-order Functions](https://github.com/233blr/EloquentJavaScript/tree/main/5.%20Higher-order%20Functions)
-6. The Secret Life of Objects
+6. [The Secret Life of Objects](https://github.com/233blr/EloquentJavaScript/tree/main/6.%20The%20Secret%20Life%20of%20Objects)
 7. Project: A Robot
-8. Bugs and Errors
-9. Regular Expressions
-10. Modules
+8. [Bugs and Errors](https://github.com/233blr/EloquentJavaScript/tree/main/8.%20Bugs%20and%20Errors)
+9. [Regular Expressions](https://github.com/233blr/EloquentJavaScript/tree/main/9.%20Regular%20Expressions)
+10. [Modules](https://github.com/233blr/EloquentJavaScript/tree/main/10.%20Modules)
 11. Asynchronous Programming
 12. Project: A Programming Language
 
 ### Part 2: Browser
 13. JavaScript and the Browser
-14. The Document Object Model
-15. Handling Events
+14. [The Document Object Model](https://github.com/233blr/EloquentJavaScript/tree/main/14.%20The%20Document%20Object%20Model)
+15. [Handling Events](https://github.com/233blr/EloquentJavaScript/tree/main/15.%20Handling%20Events)
 16. Project: A Platform Game
 17. Drawing on Canvas
 18. HTTP and Forms
