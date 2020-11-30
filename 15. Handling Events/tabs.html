@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    button {
+      cursor: pointer;
+    }
+  </style>
+  <title>task27</title>
+</head>
+
+<body>
+  <!-- A tabbed interface is a common design pattern. It allows you to select an interface panel by choosing from a number of tabs “sticking out” above an element.
+
+In this exercise you’ll implement a simple tabbed interface. Write a function, asTabs, that takes a DOM node and creates a tabbed interface showing the child elements of that node. It should insert a list of <button> elements at the top of the node, one for each child element, containing text retrieved from the data-tabname attribute of the child. All but one of the original children should be hidden (given a display style of none), and the currently visible node can be selected by clicking the buttons.
+
+When it works, extend it to also style the currently active button differently.
+
+<div id="wrapper">
+  <div data-tabname="one">Tab one</div>
+  <div data-tabname="two">Tab two</div>
+  <div data-tabname="three">Tab three</div>
+</div>
+<script>
+  function asTabs(node) {
+    // Your code here.
+  }
+  asTabs(document.querySelector("#wrapper"));
+</script> -->
+
+  <div id="wrapper">
+    <div data-tabname="one">Tab one</div>
+    <div data-tabname="two">Tab two</div>
+    <div data-tabname="three">Tab three</div>
+  </div>
+
+  <script>
+    function asTabs(node) {
+      // get all tabs elements into array
+      var tabs = Array.from(document.querySelectorAll('[data-tabname]'));
+      // create and add buttons into the document
+      var tabBlock = document.createElement('div');
+      tabs.forEach(function (tab, index) {
+        var button = document.createElement('button');
+        button.textContent = tab.getAttribute('data-tabname');
+        button.addEventListener('click', function () {
+          selectTab(index);
+        });
+        tabBlock.appendChild(button);
+      });
+      node.insertBefore(tabBlock, node.firstChild);
+      // show or hide tabs
+      function selectTab(numOfbutton) {
+        tabs.forEach(function (tab, index) {
+          if (index === numOfbutton)
+            tab.style.display = 'block';
+          else
+            tab.style.display = 'none';
+        });
+      }
+      // show first tab block
+      selectTab(0);
+    }
+    asTabs(document.querySelector('#wrapper'));
+  </script>
+
+</body>
+
+</html>
