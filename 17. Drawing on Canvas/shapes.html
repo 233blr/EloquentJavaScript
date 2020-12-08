@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task28</title>
+</head>
+
+<body>
+  <!-- Write a program that draws the following shapes on a canvas:
+
+ A trapezoid (a rectangle that is wider on one side)
+
+ A red diamond (a rectangle rotated 45 degrees or ¼π radians)
+
+ A zigzagging line
+
+ A spiral made up of 100 straight line segments
+
+ A yellow star
+
+The shapes to draw
+When drawing the last two, you may want to refer to the explanation of Math.cos and Math.sin, which describes how to get coordinates on a circle using these functions.
+
+I recommend creating a function for each shape. Pass the position, and optionally other properties, such as the size or the number of points, as parameters. The alternative, which is to hard-code numbers all over your code, tends to make the code needlessly hard to read and modify.
+
+<canvas width="600" height="200"></canvas>
+<script>
+  var cx = document.querySelector("canvas").getContext("2d");
+
+  // Your code here.
+</script> -->
+
+  <canvas width="600" height="200"></canvas>
+  <script>
+    var ctx = document.querySelector('canvas').getContext('2d');
+    ctx.clearRect(0, 0, 600, 200);
+    // draw trapezoid
+    function drawTrapezoid(ctx, x, y, width, height, indent) {
+      ctx.beginPath();
+      ctx.moveTo(x + indent, y);
+      ctx.lineTo(x - indent + width, y);
+      ctx.lineTo(x + width, y + height);
+      ctx.lineTo(x, y + height);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    // draw red diamond
+    function drawDiamond(ctx, x, y, side, fill) {
+      ctx.save();
+      ctx.fillStyle = fill;
+      ctx.translate(x + side / 2, y + side / 2);
+      ctx.rotate(Math.PI / 4);
+      ctx.translate(-x - side / 2, -y - side / 2);
+      ctx.fillRect(x, y, side, side);
+      ctx.restore();
+    }
+    // draw zigzag
+    function drawZigZag(ctx, x, y, width, height, num) {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      var inc = height / num;
+      for (var i = 0; i < num; i++) {
+        var offset = y + (i * inc);
+        ctx.lineTo(x + width, offset + (inc / 2));
+        ctx.lineTo(x, offset + inc);
+      }
+      ctx.stroke();
+    }
+    // draw spiral
+    function drawSpiral(ctx, x, y, width, segments) {
+      ctx.beginPath();
+      ctx.moveTo(x + width / 2, y + width / 2);
+      var inc = Math.pow(Math.PI, 2) / segments;
+      var angle = 0;
+      for (var i = 0; i < segments; i++) {
+        var points = [];
+        angle += inc;
+        points[0] = Math.cos(angle);
+        points[1] = Math.sin(angle);
+        angle += inc;
+        points[2] = Math.cos(angle);
+        points[3] = Math.sin(angle);
+        points = points.map(x => ((x * i) + width) / 2);
+        ctx.lineTo(x + points[0], y + points[1]);
+        ctx.lineTo(x + points[2], y + points[3]);
+      }
+      ctx.stroke();
+    }
+    // draw yellow star
+    function drawStar(ctx, x, y, width, points) {
+      var halfWidth = width / 2;
+      var xCentre = x + halfWidth;
+      var yCentre = y + halfWidth;
+      var inc = 2 * Math.PI / points;
+      var angle = 0;
+      ctx.beginPath();
+      ctx.moveTo(x + width, y + width / 2);
+      for (var i = 0; i < points; i++) {
+        angle += inc;
+        ctx.quadraticCurveTo(xCentre, yCentre, xCentre + Math.cos(angle) * halfWidth, yCentre + Math.sin(angle) * halfWidth);
+      }
+      ctx.fillStyle = 'orange';
+      ctx.fill();
+    }
+    // start drawing
+    drawTrapezoid(ctx, 0, 30, 80, 40, 20);
+    drawDiamond(ctx, 100, 25, 50, 'red');
+    drawZigZag(ctx, 180, 0, 100, 100, 6);
+    drawSpiral(ctx, 300, 0, 100, 100);
+    drawStar(ctx, 420, 0, 100, 8);
+  </script>
+</body>
+
+</html>

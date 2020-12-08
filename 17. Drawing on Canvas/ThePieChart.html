@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task29</title>
+</head>
+
+<body>
+  <!-- Earlier in the chapter, we saw an example program that drew a pie chart. Modify this program so that the name of each category is shown next to the slice that represents it. Try to find a pleasing-looking way to automatically position this text, which would work for other data sets as well. You may assume that categories are no smaller than 5 percent (that is, there won’t be a bunch of tiny ones next to each other).
+
+You might again need Math.sin and Math.cos, as described in the previous exercise.
+
+<canvas width="600" height="300"></canvas>
+<script>
+  var cx = document.querySelector("canvas").getContext("2d");
+  var total = results.reduce(function(sum, choice) {
+    return sum + choice.count;
+  }, 0);
+
+  var currentAngle = -0.5 * Math.PI;
+  var centerX = 300, centerY = 150;
+  // Add code to draw the slice labels in this loop.
+  results.forEach(function(result) {
+    var sliceAngle = (result.count / total) * 2 * Math.PI;
+    cx.beginPath();
+    cx.arc(centerX, centerY, 100,
+           currentAngle, currentAngle + sliceAngle);
+    currentAngle += sliceAngle;
+    cx.lineTo(centerX, centerY);
+    cx.fillStyle = result.color;
+    cx.fill();
+  });
+</script> -->
+  <canvas width="600" height="300"></canvas>
+  <script>
+    var results = [
+      { name: "Satisfied", count: 1043, color: "lightblue" },
+      { name: "Neutral", count: 563, color: "lightgreen" },
+      { name: "Unsatisfied", count: 510, color: "pink" },
+      { name: "No comment", count: 175, color: "silver" },
+    ];
+
+    var cx = document.querySelector("canvas").getContext("2d");
+    var total = results.reduce(function (sum, choice) {
+      return sum + choice.count;
+    }, 0);
+    var currentAngle = -0.5 * Math.PI;
+    var centerX = 300, centerY = 150;
+    var radius = 100;
+    cx.font = "15px sans-serif";
+    cx.fillStyle = "black";
+
+    // Draw the slice labels in this loop.
+    for (var i = 0; i < results.length; i++) {
+      var sliceAngle = (results[i].count / total) * 2 * Math.PI;
+      var textAngle = currentAngle + sliceAngle / 2;
+      cx.beginPath();
+      cx.arc(centerX, centerY, radius,
+        currentAngle, currentAngle + sliceAngle);
+      currentAngle += sliceAngle;
+      cx.lineTo(centerX, centerY);
+      cx.fillStyle = results[i].color;
+      cx.fill();
+      cx.fillStyle = 'black';
+      cx.textBaseline = 'middle';
+      if (Math.cos(textAngle) > 0) {
+        cx.textAlign = 'start';
+      } else {
+        cx.textAlign = 'end';
+      }
+      cx.fillText(results[i].name,
+        centerX + Math.cos(textAngle) * radius * 1.1,
+        centerY + Math.sin(textAngle) * radius * 1.1
+      );
+    };
+  </script>
+</body>
+
+</html>

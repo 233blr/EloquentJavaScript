@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>task30</title>
+</head>
+
+<body>
+  <!-- Use the requestAnimationFrame technique that we saw in previous chapters to draw a box with a bouncing ball in it. The ball moves at a constant speed and bounces off the box’s sides when it hits them.
+
+<canvas width="400" height="400"></canvas>
+<script>
+  var cx = document.querySelector("canvas").getContext("2d");
+
+  var lastTime = null;
+  function frame(time) {
+    if (lastTime != null)
+      updateAnimation(Math.min(100, time - lastTime) / 1000);
+    lastTime = time;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  function updateAnimation(step) {
+    // Your code here.
+  }
+</script> -->
+  <canvas width="400" height="400"></canvas>
+  <script>
+    var roundDown = function (num) {
+      return Math.floor(num);
+    };
+    var roundUp = function (num) {
+      return Math.floor(num + 0.5);
+    };
+
+    var cx = document.querySelector("canvas").getContext("2d");
+    // draw the box
+    var xOffset = 50;
+    var yOffset = 50;
+    var height = 200;
+    var width = 200;
+    var xMin = xOffset;
+    var xMax = xOffset + width;
+    var yMin = yOffset;
+    var yMax = yOffset + height;
+    var ballRadius = 14;
+    var ballXPos = xMax / 2 + xMin;
+    var ballYPos = yMax / 2 + yMin;
+    var ballAngle = Math.random() * 2 * Math.PI;
+    var speed = 3;
+    var borderWidth = 4;
+    var innerXMin = xMin + roundUp(borderWidth / 2);
+    var innerXMax = xMax - roundUp(borderWidth / 2) * 2;
+    var innerYMin = yMin + roundUp(borderWidth / 2);
+    var innerYMax = yMax - roundUp(borderWidth / 2) * 2;
+    var ballXMin = innerXMin + ballRadius;
+    var ballXMax = innerXMax + xOffset + roundDown(borderWidth / 2) - ballRadius;
+    var ballYMin = innerYMin + ballRadius;
+    var ballYMax = innerYMax + yOffset + roundDown(borderWidth / 2) - ballRadius;
+    cx.strokeStyle = 'grey';
+    cx.lineWidth = borderWidth;
+    cx.strokeRect(xMin, yMin, xMax, yMax);
+    // ball start position
+    cx.moveTo(ballXPos, ballYPos);
+
+    var lastTime = null;
+    function frame(time) {
+      if (lastTime != null) {
+        updateAnimation(Math.min(100, time - lastTime) / 1000);
+      }
+      lastTime = time;
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+
+    function updateAnimation(step) {
+      // animate the ball
+      var xInc = Math.cos(ballAngle) * speed;
+      var yInc = Math.sin(ballAngle) * speed;
+      if (ballXPos + xInc < ballXMin) {
+        ballAngle = Math.PI - ballAngle;
+        xInc = ballXMin - ballXPos - xInc;
+      };
+      if (ballXPos + xInc > ballXMax) {
+        ballAngle = Math.PI - ballAngle;
+        xInc = ballXMax - ballXPos - xInc;
+      };
+      if (ballYPos + yInc < ballYMin) {
+        ballAngle = 2 * Math.PI - ballAngle;
+        yInc = ballYMin - ballYPos - yInc;
+      };
+      if (ballYPos + yInc > ballYMax) {
+        ballAngle = 2 * Math.PI - ballAngle;
+        yInc = ballYMax - ballYPos - yInc;
+      };
+      ballXPos += xInc;
+      ballYPos += yInc;
+      cx.clearRect(innerXMin, innerYMin, innerXMax, innerYMax);
+      cx.fillStyle = 'red';
+      cx.beginPath();
+      cx.arc(ballXPos, ballYPos, ballRadius, 0, 2 * Math.PI);
+      cx.fill();
+    }
+  </script>
+</body>
+
+</html>
