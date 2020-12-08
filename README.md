@@ -25,7 +25,7 @@ Examples from the book "Eloquent JavaScript"
 14. [The Document Object Model](https://github.com/233blr/EloquentJavaScript/tree/main/14.%20The%20Document%20Object%20Model)
 15. [Handling Events](https://github.com/233blr/EloquentJavaScript/tree/main/15.%20Handling%20Events)
 16. Project: A Platform Game
-17. Drawing on Canvas
+17. [Drawing on Canvas](https://github.com/233blr/EloquentJavaScript/tree/main/17.%20Drawing%20on%20Canvas)
 18. HTTP and Forms
 19. Project: A Pixel Art Editor
 
