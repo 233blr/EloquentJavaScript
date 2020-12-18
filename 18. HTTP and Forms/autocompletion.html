@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .item {
+      display: block;
+    }
+
+    .item:hover {
+      background: rgb(230, 230, 230);
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- Extend a text field so that when the user types, a list of suggested values is shown below the field. You have an array of possible values available and should show those that start with the text that was typed. When a suggestion is clicked, replace the text field’s current value with it.
+
+<input type="text" id="field">
+<div id="suggestions" style="cursor: pointer"></div>
+
+<script>
+  // Builds up an array with global variable names, like
+  // 'alert', 'document', and 'scrollTo'
+  var terms = [];
+  for (var name in window)
+    terms.push(name);
+
+  // Your code here.
+</script> -->
+  <input type="text" id="field">
+  <div id="suggestions" style="cursor: pointer"></div>
+
+  <script>
+    // Builds up an array with global variable names, like
+    // 'alert', 'document', and 'scrollTo'
+    var terms = [];
+    for (var name in window) {
+      terms.push(name);
+    }
+
+    var input = document.querySelector('#field');
+    var div = document.querySelector('#suggestions');
+
+    input.addEventListener('input', function () {
+      div.innerHTML = '';
+      for (var i = 0; i < terms.length; i++) {
+        // Check for matches with the text in the
+        // input and leave the desired
+        if (terms[i].startsWith(input.value)) {
+          var item = document.createElement('span');
+          item.setAttribute('class', 'item');
+          item.textContent = terms[i];
+          // Add the ability to select the desired value
+          item.addEventListener('click', function (event) {
+            var textFromItem = event.target.innerHTML;
+            input.value = '';
+            input.value = textFromItem;
+            div.innerHTML = '';
+          });
+          div.append(item);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

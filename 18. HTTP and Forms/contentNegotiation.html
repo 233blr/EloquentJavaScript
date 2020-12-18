@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- One of the things that HTTP can do, but that we have not discussed in this chapter, is called content negotiation. The Accept header for a request can be used to tell the server what type of document the client would like to get. Many servers ignore this header, but when a server knows of various ways to encode a resource, it can look at this header and send the one that the client prefers.
+
+The URL eloquentjavascript.net/author is configured to respond with either plaintext, HTML, or JSON, depending on what the client asks for. These formats are identified by the standardized media types text/plain, text/html, and application/json.
+
+Send requests to fetch all three formats of this resource. Use the setRequestHeader method of your XMLHttpRequest object to set the header named Accept to one of the media types given earlier. Make sure you set the header after calling open but before calling send.
+
+Finally, try asking for the media type application/rainbows+unicorns and see what happens. -->
+  <script>
+    var mediaTypesArr = ['text/plain', 'text/html',
+      'application/json', 'application/rainbow+unicorns'];
+
+    function getResponsesForMediaType(mediaType) {
+      // Create a new XMLHttpRequest object
+      var xhr = new XMLHttpRequest();
+      // Configuring it
+      xhr.open('GET', 'https://eloquentjavascript.net/author');
+      xhr.setRequestHeader('Accept', mediaType);
+      xhr.send();
+      // This code will work after we receive the server response
+      xhr.onload = function () {
+        // Analyze the HTTP status of the response
+        if (xhr.status != 200) {
+          console.error('media type ' + mediaType + ' - Error !');
+          // If everything went good, print the result
+        } else {
+          console.log('\n' + mediaType + '\n\n' + xhr.response + '\n');
+        }
+      };
+    };
+
+    for (var i = 0; i < mediaTypesArr.length; i++) {
+      getResponsesForMediaType(mediaTypesArr[i]);
+    };
+  </script>
+</body>
+
+</html>
