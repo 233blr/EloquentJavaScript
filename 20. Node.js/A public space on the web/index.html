@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>task39</title>
+</head>
+
+<body>
+  <p><select style='width: 20%;' id='filelist'></select></p>
+
+  <p>
+    <textarea id='text' style='width: 100%; height: 300px'></textarea>
+    <br>
+    <button onclick='saveFile()'>Save</button>
+  </p>
+
+  <script>
+    //Get the DOM nodes
+    var filelist = document.querySelector('#filelist');
+    var textarea = document.querySelector('#text');
+    var path = '';
+
+    // Added files to the file list
+    function loadFileList() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/addlist', true);
+      xhr.send();
+      xhr.onload = function () {
+        if (xhr.status != 200) {
+          console.log('Error');
+        } else {
+          xhr.responseText.split(' ').forEach(function (file) {
+            var option = document.createElement('option');
+            option.textContent = file;
+            filelist.appendChild(option);
+          });
+        }
+      };
+      xhr.onerror = function () {
+        console.log('Connection error');
+      };
+    }
+    loadFileList();
+
+    // Put text from file in the textarea.
+    function loadCurrentFile() {
+      textarea.textContent = '';
+      var xhr = new XMLHttpRequest();
+      // Taked path for saveFile function
+      path = './files/' + this.value;
+      xhr.open('GET', '/files/' + this.value, true);
+      xhr.send();
+      xhr.onload = function () {
+        if (xhr.status != 200) {
+          console.log('Error');
+        } else {
+          textarea.textContent = xhr.responseText;
+        };
+      }
+      xhr.onerror = function () {
+        console.log('Connection error');
+      };
+    }
+    filelist.addEventListener('change', loadCurrentFile);
+
+    // Maked a request to save the selected file.
+    function saveFile() {
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', '/publish', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({ message: textarea.value, path: path }));
+      return false;
+    };
+
+  </script>
+</body>
+
+</html>
