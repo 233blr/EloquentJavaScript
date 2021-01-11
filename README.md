@@ -30,5 +30,5 @@ Examples from the book "Eloquent JavaScript"
 19. Project: A Pixel Art Editor
 
 ### Part 3: Node
-20. Node.js
+20. [Node.js](https://github.com/233blr/EloquentJavaScript/tree/main/20.%20Node.js)
 21. Project: Skill-Sharing Website
